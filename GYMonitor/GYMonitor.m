@@ -15,12 +15,14 @@
 
 @implementation UIViewController (GYMonitor)
 
+#ifdef FPS
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [GYMonitorUtils gyswizzleSEL:@selector(viewWillAppear:) withSEL:@selector(gymviewWillAppear:) forClass:[UIViewController class]];
     });
 }
+#endif
 
 - (void)gymviewWillAppear:(BOOL)animated {
     NSString *name = NSStringFromClass([self class]);
